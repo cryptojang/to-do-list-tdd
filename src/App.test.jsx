@@ -48,4 +48,18 @@ describe("<App />", () => {
     fireEvent.click(span);
     expect(span).not.toHaveClass("line-through");
   });
+
+  it("투두 삭제 확인", () => {
+    const { getByText, queryByText } = render(<App />);
+
+    const span = getByText("전화하기");
+    const button = span.nextSibling;
+
+    fireEvent.click(button);
+
+    const removedSpan = queryByText("전화하기");
+    expect(removedSpan).toBeNull();
+    const existSpan = queryByText("문자하기");
+    expect(existSpan).not.toBeNull();
+  });
 });

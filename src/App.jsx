@@ -37,10 +37,20 @@ const App = () => {
     setTodos(temp);
   };
 
+  const onDelete = (todoId) => {
+    const deleted = todos.filter((v) => {
+      if (v.id !== todoId) {
+        return v;
+      }
+    });
+
+    setTodos(deleted);
+  };
+
   return (
     <>
       <CreateTodo onInsert={onInsert} />
-      <TodoList todos={todos} onToggle={onToggle} />
+      <TodoList todos={todos} onToggle={onToggle} onDelete={onDelete} />
     </>
   );
 };
